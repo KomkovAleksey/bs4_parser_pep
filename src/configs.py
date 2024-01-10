@@ -28,6 +28,7 @@ def configure_argument_parser(available_modes):
 
     return parser
 
+
 def configure_logging():
     """Конфигурация логов"""
     log_dir = BASE_DIR / 'logs'

@@ -40,6 +40,7 @@ def whats_new(session):
 
     return results
 
+
 def latest_versions(session):
     """Парсер статуса версии Python."""
     response = get_response(session, MAIN_DOC_URL)
@@ -67,6 +68,7 @@ def latest_versions(session):
 
     return results
 
+
 def download(session):
     """Парсер скачивающий документацию Python."""
     downloads_url = urljoin(MAIN_DOC_URL, 'download.html')
@@ -91,6 +93,7 @@ def download(session):
     with open(archive_path, 'wb') as file:
         file.write(response.content)
     logging.info(f'Архив был загружен и сохранён: {archive_path}')
+
 
 def pep(session):
     """Парсер документации PEP."""
@@ -147,6 +150,7 @@ MODE_TO_FUNCTION = {
     'download': download,
     'pep': pep,
 }
+
 
 def main():
     """Главная фукция."""

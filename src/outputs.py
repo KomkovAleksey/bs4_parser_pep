@@ -17,10 +17,12 @@ def control_output(results, cli_args):
     else:
         default_output(results)
 
+
 def default_output(results):
     """Вывод данных в терминал построчно."""
     for row in results:
         print(*row)
+
 
 def pretty_output(results):
     """Вывод данных в формате PrettyTable."""
@@ -29,6 +31,7 @@ def pretty_output(results):
     table.align = 'l'
     table.add_rows(results[1:])
     print(table)
+
 
 def file_output(results, cli_args):
     """
