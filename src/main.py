@@ -93,7 +93,7 @@ def download(session):
     logging.info(f'Архив был загружен и сохранён: {archive_path}')
 
 def pep(session):
-    """Парсинг документации PEP."""
+    """Парсер документации PEP."""
     results = [('Статус', 'Количество')]
     status_total = {}
     total_pep = 0
