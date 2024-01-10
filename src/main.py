@@ -107,7 +107,7 @@ def pep(session):
     for tr in tqdm(tr_tag):
         total_pep += 1
         pep_status_in_table = find_tag(tr, 'abbr').text[1:]
-        if  pep_status_in_table is None:
+        if pep_status_in_table is None:
             return
         pep_link = find_tag(tr, 'a')['href']
         pep_page = urljoin(PEP_DOC_URL, pep_link)
