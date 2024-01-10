@@ -87,7 +87,7 @@ def download(session):
     downloads_dir = BASE_DIR / 'downloads'
     downloads_dir.mkdir(exist_ok=True)
     archive_path = downloads_dir / filename
-    response =  get_response(session, archive_url)
+    response = get_response(session, archive_url)
     if response is None:
         return
     with open(archive_path, 'wb') as file:
@@ -143,6 +143,7 @@ def pep(session):
     results.append(('Total', total_pep))
 
     return results
+
 
 MODE_TO_FUNCTION = {
     'whats-new': whats_new,
