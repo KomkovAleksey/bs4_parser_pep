@@ -6,7 +6,7 @@ from constants import BASE_DIR, LOG_FORMAT, DT_FORMAT
 
 
 def configure_argument_parser(available_modes):
-    """Конфигурация аргументов командной строки"""
+    """Конфигурация аргументов командной строки."""
     parser = argparse.ArgumentParser(description='Парсер документации Python')
     parser.add_argument(
         'mode',
@@ -30,7 +30,7 @@ def configure_argument_parser(available_modes):
 
 
 def configure_logging():
-    """Конфигурация логов"""
+    """Конфигурация логов."""
     log_dir = BASE_DIR / 'logs'
     log_dir.mkdir(exist_ok=True)
     log_file = log_dir / 'parser.log'
