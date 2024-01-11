@@ -1,6 +1,7 @@
 import re
 import logging
 from urllib.parse import urljoin
+from collections import Counter
 
 import requests_cache
 from bs4 import BeautifulSoup
@@ -98,8 +99,7 @@ def download(session):
 def pep(session):
     """Парсер документации PEP."""
     results = [('Статус', 'Количество')]
-    status_total = {}
-    total_pep = 0
+    actual_statuses = Counter()
     response = get_response(session, PEP_DOC_URL)
     if response is None:
         return
@@ -108,7 +108,6 @@ def pep(session):
     tbody_tag = find_tag(section_tag, 'tbody')
     tr_tag = tbody_tag.find_all('tr')
     for tr in tqdm(tr_tag):
-        total_pep += 1
         pep_status_in_table = find_tag(tr, 'abbr').text[1:]
         if pep_status_in_table is None:
             return
@@ -124,9 +123,7 @@ def pep(session):
         ).parent.find_next_sibling('dd').string
         if pep_status_in_pep_page is None:
             return
-        if pep_status_in_pep_page not in status_total:
-            status_total[pep_status_in_pep_page] = 1
-        status_total[pep_status_in_pep_page] += 1
+        actual_statuses[pep_status_in_pep_page] += 1
         if pep_status_in_pep_page not in EXPECTED_STATUS[pep_status_in_table]:
             error_msg = (
                 'Несовпадающие статусы:\n'
@@ -136,11 +133,9 @@ def pep(session):
             )
             logging.warning(error_msg)
 
-    for status in status_total:
-        results.append(
-            (status, status_total[status])
-        )
-    results.append(('Total', total_pep))
+    for status, quantity in actual_statuses.items():
+        results.append((status, quantity))
+    results.append(('Total', sum(actual_statuses.values())))
 
     return results
 
