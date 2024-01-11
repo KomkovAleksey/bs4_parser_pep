@@ -1,5 +1,4 @@
-# 👨‍💻 [Проект парсинга bs4_parser_pep.](https://github.com/KomkovAleksey/bs4_parser_pep)
-
+# 👨‍💻 [Проект bs4_parser_pep.](https://github.com/KomkovAleksey/bs4_parser_pep)
 
 ## Оглавление
 
