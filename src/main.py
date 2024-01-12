@@ -7,7 +7,13 @@ import requests_cache
 from tqdm import tqdm
 
 from exceptions import ParserFindTagException
-from constants import MAIN_DOC_URL, PEP_DOC_URL, EXPECTED_STATUS, PATTERN, BASE_DIR
+from constants import (
+    MAIN_DOC_URL,
+    PEP_DOC_URL,
+    EXPECTED_STATUS,
+    PATTERN,
+    BASE_DIR,
+)
 from configs import configure_argument_parser, configure_logging
 from outputs import control_output
 from utils import get_response, find_tag, get_soup
@@ -129,26 +135,26 @@ MODE_TO_FUNCTION = {
 }
 
 
-def main(): 
-    """Главная фукция.""" 
-    configure_logging() 
-    logging.info('Парсер запущен!') 
-    arg_parser = configure_argument_parser(MODE_TO_FUNCTION.keys()) 
-    args = arg_parser.parse_args() 
+def main():
+    """Главная фукция."""
+    configure_logging()
+    logging.info('Парсер запущен!')
+    arg_parser = configure_argument_parser(MODE_TO_FUNCTION.keys())
+    args = arg_parser.parse_args()
     logging.info(f'Аргументы командной строки: {args}')
     try:
-        session = requests_cache.CachedSession() 
-        if args.clear_cache: 
-            session.cache.clear() 
-        results = MODE_TO_FUNCTION[args.mode](session) 
-        if results is not None: 
+        session = requests_cache.CachedSession()
+        if args.clear_cache:
+            session.cache.clear()
+        results = MODE_TO_FUNCTION[args.mode](session)
+        if results is not None:
             control_output(results, args)
     except Exception as error:
         logging.exception(
             'Во время выполнения скрипта возникла ошибка {error}'.format(error=error)
         )
-    logging.info('Парсер завершил работу.') 
+    logging.info('Парсер завершил работу.')
  
  
-if __name__ == '__main__': 
+if __name__ == '__main__':
     main()
