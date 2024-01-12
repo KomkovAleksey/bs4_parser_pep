@@ -142,6 +142,7 @@ def main():
     arg_parser = configure_argument_parser(MODE_TO_FUNCTION.keys())
     args = arg_parser.parse_args()
     logging.info(f'Аргументы командной строки: {args}')
+    error_msg = f'Во время выполнения скрипта возникла ошибка{error}'
     try:
         session = requests_cache.CachedSession()
         if args.clear_cache:
@@ -150,11 +151,9 @@ def main():
         if results is not None:
             control_output(results, args)
     except Exception as error:
-        logging.exception(
-            'Во время выполнения скрипта возникла ошибка {error}'.format(error=error)
-        )
+        logging.exception(error_msg, stack_info=True)
     logging.info('Парсер завершил работу.')
- 
- 
+
+
 if __name__ == '__main__':
     main()

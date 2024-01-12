@@ -3,10 +3,10 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 from constants import (
-    LOG_FORMAT, 
-    DT_LOG_FORMAT, 
-    LOG_DIR, 
-    PRETTY, 
+    LOG_FORMAT,
+    DT_LOG_FORMAT,
+    LOG_DIR,
+    PRETTY,
     FILE,
 )
 
