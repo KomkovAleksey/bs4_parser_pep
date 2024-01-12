@@ -142,7 +142,7 @@ def main():
     arg_parser = configure_argument_parser(MODE_TO_FUNCTION.keys())
     args = arg_parser.parse_args()
     logging.info(f'Аргументы командной строки: {args}')
-    error_msg = f'Во время выполнения скрипта возникла ошибка{error}'
+    error_msg = f'Во время выполнения скрипта произошла ошибка {error}'
     try:
         session = requests_cache.CachedSession()
         if args.clear_cache:
