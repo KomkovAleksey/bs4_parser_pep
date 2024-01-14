@@ -4,7 +4,14 @@ import logging
 
 from prettytable import PrettyTable
 
-from constants import DATETIME_FORMAT, PRETTY, FILE, DEFAULT, BASE_DIR
+from constants import (
+    DATETIME_FORMAT, 
+    PRETTY, 
+    FILE, 
+    DEFAULT, 
+    BASE_DIR, 
+    REULTS_DIR,
+)
 
 
 def default_output(results, *args):
@@ -27,8 +34,7 @@ def file_output(results, cli_args, encoding='utf-8'):
     Создание директории с результатами парсинга.
     Сохраненяет файл с результатами в формате .csv
     """
-    # results_dir = BASE_DIR / 'results' для pytest
-    results_dir = BASE_DIR / 'results'
+    results_dir = BASE_DIR / REULTS_DIR
     results_dir.mkdir(exist_ok=True)
     parser_mode = cli_args.mode
     now = dt.datetime.now()

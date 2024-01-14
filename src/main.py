@@ -13,6 +13,7 @@ from constants import (
     EXPECTED_STATUS,
     PATTERN,
     BASE_DIR,
+    DOWNLOADS_DIR,
 )
 from configs import configure_argument_parser, configure_logging
 from outputs import control_output
@@ -68,7 +69,6 @@ def latest_versions(session):
 
 def download(session):
     """Парсер скачивающий документацию Python."""
-    # downloads_dir = BASE_DIR / 'downloads' для pytest
     downloads_url = urljoin(MAIN_DOC_URL, 'download.html')
     soup = get_soup(session, downloads_url)
     main_tag = find_tag(soup, 'div', {'role': 'main'})
@@ -79,7 +79,7 @@ def download(session):
     pdf_a4_link = pdf_a4_tag['href']
     archive_url = urljoin(MAIN_DOC_URL, pdf_a4_link)
     filename = archive_url.split('/')[-1]
-    downloads_dir = BASE_DIR / 'downloads'
+    downloads_dir = BASE_DIR / DOWNLOADS_DIR
     downloads_dir.mkdir(exist_ok=True)
     archive_path = downloads_dir / filename
     response = get_response(session, archive_url)
