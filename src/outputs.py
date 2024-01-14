@@ -4,33 +4,16 @@ import logging
 
 from prettytable import PrettyTable
 
-from constants import DATETIME_FORMAT, PRETTY, FILE, BASE_DIR
+from constants import DATETIME_FORMAT, PRETTY, FILE, DEFAULT, BASE_DIR
 
 
-def control_output(results, cli_args):
-    """Контроль вывода результатов парсинга."""
-    outputs = {
-        PRETTY: pretty_output,
-        FILE: file_output,
-    }
-
-    output = cli_args.output
-    if output in outputs:
-        try:
-            return outputs[output](results, cli_args)
-        except TypeError:
-            return outputs[output](results)
-    else:
-        return default_output(results)
-
-
-def default_output(results):
+def default_output(results, *args):
     """Вывод данных в терминал построчно."""
     for row in results:
         print(*row)
 
 
-def pretty_output(results):
+def pretty_output(results, *args):
     """Вывод данных в формате PrettyTable."""
     table = PrettyTable()
     table.field_names = results[0]
@@ -44,6 +27,7 @@ def file_output(results, cli_args, encoding='utf-8'):
     Создание директории с результатами парсинга.
     Сохраненяет файл с результатами в формате .csv
     """
+    #  results_dir = BASE_DIR / 'results' для pytest
     results_dir = BASE_DIR / 'results'
     results_dir.mkdir(exist_ok=True)
     parser_mode = cli_args.mode
@@ -55,3 +39,15 @@ def file_output(results, cli_args, encoding='utf-8'):
         writer = csv.writer(f, dialect='unix')
         writer.writerows(results)
     logging.info(f'Файл с результатами был сохранён: {file_path}')
+
+
+OUTPUTS = {
+       PRETTY: pretty_output,
+       FILE: file_output,
+       DEFAULT: default_output,
+    }
+
+
+def control_output(results, cli_args):
+    """Контроль вывода результатов парсинга."""
+    OUTPUTS.get(cli_args.output)(results, cli_args)

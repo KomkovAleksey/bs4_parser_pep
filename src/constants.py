@@ -12,6 +12,8 @@ PATTERN = r'Python (?P<version>\d\.\d+) \((?P<status>.*)\)'
 
 BASE_DIR = Path(__file__).parent
 LOG_DIR = BASE_DIR / 'logs'
+REULTS_DIR = BASE_DIR / 'results'
+DOWNLOADS_DIR = BASE_DIR / 'downloads'
 
 EXPECTED_STATUS = {
     'A': ('Active', 'Accepted'),
@@ -26,3 +28,4 @@ EXPECTED_STATUS = {
 
 PRETTY = 'pretty'
 FILE = 'file'
+DEFAULT = None

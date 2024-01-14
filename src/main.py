@@ -68,6 +68,7 @@ def latest_versions(session):
 
 def download(session):
     """Парсер скачивающий документацию Python."""
+    # downloads_dir = BASE_DIR / 'downloads' для pytest
     downloads_url = urljoin(MAIN_DOC_URL, 'download.html')
     soup = get_soup(session, downloads_url)
     main_tag = find_tag(soup, 'div', {'role': 'main'})
