@@ -5,11 +5,11 @@ import logging
 from prettytable import PrettyTable
 
 from constants import (
-    DATETIME_FORMAT, 
-    PRETTY, 
-    FILE, 
-    DEFAULT, 
-    BASE_DIR, 
+    DATETIME_FORMAT,
+    PRETTY,
+    FILE,
+    DEFAULT,
+    BASE_DIR,
     REULTS_DIR,
 )
 
