@@ -27,7 +27,7 @@ def file_output(results, cli_args, encoding='utf-8'):
     Создание директории с результатами парсинга.
     Сохраненяет файл с результатами в формате .csv
     """
-    #  results_dir = BASE_DIR / 'results' для pytest
+    # results_dir = BASE_DIR / 'results' для pytest
     results_dir = BASE_DIR / 'results'
     results_dir.mkdir(exist_ok=True)
     parser_mode = cli_args.mode
