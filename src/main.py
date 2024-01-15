@@ -137,7 +137,7 @@ MODE_TO_FUNCTION = {
 
 
 def main():
-    """Главная фукция."""
+    """Главная функция."""
     configure_logging()
     logging.info('Парсер запущен!')
     arg_parser = configure_argument_parser(MODE_TO_FUNCTION.keys())
